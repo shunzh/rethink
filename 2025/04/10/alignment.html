@@ -36,6 +36,12 @@ window.MathJax = {
 };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Code Copy Button -->
+<script src="/rethink/assets/js/copy-code.js"></script>
 </head>
 <body><header class="site-header">
 
@@ -188,8 +194,8 @@ However, the challenge is that the true reward function is unknown to the agent.
   <li>Note that $\psi$ is a distribution, not a random variable. So we use $P(r; \psi)$ instead of $P(r \mid \psi)$.</li>
 </ul>
 
-<p><strong>Finding the Optimal Policy Under Reward Uncertainty.</strong>
-Although we do not focus on how to efficiently find the optimal policy under reward uncertainty, it’s worth pointing out that the optimal policy under reward uncertainty is the same as the optimal policy under the mean reward function
+<p><strong>Finding the Optimal Trajectory Under Reward Uncertainty.</strong>
+Although we do not focus on how to efficiently find the optimal policy / trajectory under reward uncertainty, it’s worth pointing out that the optimal trajectory under reward uncertainty is the same as the optimal trajectory under the mean reward function
 (adapted from Theorem 3 in <a class="citation" href="#ramachandran_bayesian_2007">Ramachandran &amp; Amir (2007)</a>):</p>
 
 \[\begin{equation}
@@ -199,7 +205,7 @@ V^*_\psi = \max_{\tau} \mathbb{E}_{r \sim \psi} \left[ V^\tau_r \right] \\
 \end{equation}\]
 
 <p>where $\bar{r}_\psi(s, a) = \sum_{r \in R} P(r; \psi) \cdot r(s, a)$ is the mean reward function.
-So under reward uncertainty, we can still find the optimal policy in the same way as finding the optimal policy for a known reward function.</p>
+So under reward uncertainty, we can still find the optimal trajectory in the same way as finding the optimal trajectory for a known reward function.</p>
 
 <h3 id="11-inferring-the-reward-function">1.1 Inferring the Reward Function</h3>
 
@@ -442,7 +448,7 @@ Let’s analyze the EVOI of $q_1$ and $q_2$.</p>
 
     <p>So the EVOI of $q_1$ is higher than $q_2$.</p>
 
-    <p>In summary, EVOI prefers $q_1$ because it sometimes leads to a better trajectory, whereas $q_2$ never changes the agent’s choice.
+    <p>In summary, EVOI prefers $q_1$ because it leads to a better trajectory, whereas $q_2$ never changes the agent’s choice.
 This illustrates that EVOI selects more helpful queries than the entropy-based objective.</p>
   </div>
 </div>
@@ -509,7 +515,7 @@ This method treats clarification as a <strong>two-stage process</strong> — ask
 
 <h2 id="4-future-directions">4. Future Directions</h2>
 
-<p><strong>Querying During Chain-of-thought Reasoning.</strong>
+<p><strong>Querying During Chain-of-Thought Reasoning.</strong>
 Although finding EVOI-optimal queries is challenging, language models may still reason semantically about what to ask and how a query might improve its response.</p>
 
 <p>Current language models can identify uncertainty during chain-of-thought reasoning, but they often make assumptions instead of proactively seeking clarification.
